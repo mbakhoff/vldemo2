@@ -5,17 +5,26 @@
         <title>demo application</title>
         <link rel="stylesheet" href="assets/demostyle.css">
         <script src="assets/jquery-2.1.0.js"></script>
+        <script src="assets/vldemo2-auctions.js"></script>
         <script src="assets/demoapp.js"></script>
     </head>
     <body>
-        <h1>Hello world</h1>
+        <h1>Greatest auction site in the universe</h1>
         <div id="browsing">
-            <h2>Articles:</h2>
-            <ul id="articles"></ul>
+            <h2>Items on sale:</h2>
+            <ul id="items"></ul>
         </div>
         <div id="viewing" class="hidden">
-            <p id="content"></p>
-            <div id="comments"></div>
+            <p id="itemdescription"></p>
+            <div id="bids"></div>
+
+            <div id="myoffer">
+                <label for="bidder">My name:</label>
+                <input id="bidder" type="text" />
+                <label for="amount">Amount:</label>
+                <input id="amount" type="text" />
+                <button id="makebid">Make a bid</button>
+            </div>
         </div>
     </body>
 </html>

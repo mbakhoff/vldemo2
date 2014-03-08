@@ -1,3 +1,18 @@
 .hidden {
     display: none;
 }
+
+#items li {
+    list-style: none;
+    background-color: #aaaaff;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 4px 0;
+    width: 400px;
+}
+
+#items li:hover {
+    background-color: #ccccff;
+    cursor: pointer;
+}
+
