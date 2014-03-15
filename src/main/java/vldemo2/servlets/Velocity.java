@@ -15,6 +15,7 @@ import java.io.IOException;
 
 // process all requested html files with velocity templating engine
 // https://velocity.apache.org/engine/releases/velocity-1.7
+// https://velocity.apache.org/engine/releases/velocity-1.7/user-guide.html
 @WebServlet(value = "*.html")
 public class Velocity extends HttpServlet {
 

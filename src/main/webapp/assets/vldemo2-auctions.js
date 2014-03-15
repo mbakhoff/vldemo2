@@ -3,9 +3,7 @@
 // http://javascript.crockford.com/private.html
 // http://blog.stannard.net.au/2011/01/14/creating-namespaces-in-javascript/
 
-if (auctions === undefined) {
-    var auctions = {};
-}
+var auctions = auctions || {};
 
 auctions.BrowsingList = function(jList, viewingList) {
     this.list = jList;
