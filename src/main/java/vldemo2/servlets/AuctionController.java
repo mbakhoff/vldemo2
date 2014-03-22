@@ -48,8 +48,14 @@ public class AuctionController extends HttpServlet {
 
             // echo the same object back for convenience and debugging
             // also it now contains the generated id of the bid
+            String bidEcho = gson.toJson(bid);
             resp.setHeader("Content-Type", "application/json");
-            resp.getWriter().write(gson.toJson(bid));
+            resp.getWriter().write(bidEcho);
+
+            // actually this is a bad place to send the broadcast.
+            // better: attach sockets as eventlisteners to the datastore
+            // even better: use message queues for servlet-datastore events
+            AuctionSocketController.find(req.getServletContext()).broadcast(bidEcho);
         } catch (JsonParseException ex) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
         }

@@ -25,13 +25,33 @@ var vldemo2 = {
                 // server returns the bid with its new generated id
                 // syncing js&dom is a pain. angularjs may help
                 bidBuilder.clear();
-                item.bids.push(savedBid);
-                view.addBid(savedBid);
+                if (!auctions.getBidsById(item.bids, savedBid.id).length) {
+                    item.bids.push(savedBid);
+                    view.setViewContent(item);
+                }
             },
             error: function(req, text) {
                 console.error('failed to post bid: ' + text);
             }
         });
+    },
+
+    createWebsocket: function(allItems, view) {
+        var socketAddr = window.location.origin.replace("http", "ws") + "/feed";
+        var websocket = new WebSocket(socketAddr);
+        websocket.onopen = function() { console.log("socket up!"); };
+        websocket.onclose = function() { console.log("socket closed!"); };
+        websocket.onmessage = function(evt) {
+            console.log("ws received " + evt.data);
+            var bid = JSON.parse(evt.data);
+            var item = allItems[bid.itemId];
+            if (!auctions.getBidsById(item.bids, bid.id).length) {
+                item.bids.push(bid);
+                if (view.selectedItem.id == item.id) {
+                    view.setViewContent(item);
+                }
+            }
+        };
     }
 };
 
@@ -48,5 +68,6 @@ $(function() {
     });
 
     vldemo2.loadAuctionItems(itemList);
+    vldemo2.createWebsocket(itemList.items, viewingList);
 
 });
