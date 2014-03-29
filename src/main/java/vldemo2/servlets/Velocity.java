@@ -34,6 +34,8 @@ public class Velocity extends HttpServlet {
 
         VelocityEngine engine = new VelocityEngine();
         engine.addProperty("file.resource.loader.path", templatePath);
+        engine.addProperty("output.encoding", "UTF-8");
+        engine.addProperty("input.encoding", "UTF-8");
         engine.init();
         return engine;
     }
@@ -41,6 +43,8 @@ public class Velocity extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+
         VelocityContext context = new VelocityContext();
         // add additional data to the context here
         // it can then be used inside the templates
@@ -48,7 +52,7 @@ public class Velocity extends HttpServlet {
     }
 
     private Template getTemplate(HttpServletRequest req) {
-        return engine.getTemplate(req.getRequestURI(), "UTF-8");
+        return engine.getTemplate(req.getRequestURI());
     }
 
 }
