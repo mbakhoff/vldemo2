@@ -28,6 +28,12 @@
           <artifactId>websocket-servlet</artifactId>
           <version>9.1.2.v20140210</version>
       </dependency>
+      <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-all</artifactId>
+          <version>1.9.5</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
   <build>
       <plugins>
